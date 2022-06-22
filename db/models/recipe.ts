@@ -15,6 +15,7 @@ const recipeSchema = new mongoose.Schema({
   times: { type: timeSchema, required: true },
   ingredients: { type: [String], required: true },
   steps: { type: [String], required: true },
+  id: { type: String, required: true },
 });
 
 const Recipe = mongoose.model('Recipe', recipeSchema);

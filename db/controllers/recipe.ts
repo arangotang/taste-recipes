@@ -10,6 +10,7 @@ interface RecipeProps {
   steps: string[];
   _id?: any;
   __v?: number;
+  id: string;
 }
 
 export const getAllRecipes = async (): Promise<RecipeProps[] | false> => {
@@ -30,6 +31,7 @@ export const addRecipe = async ({
   times,
   ingredients,
   steps,
+  id,
 }: RecipeProps): Promise<boolean> => {
   try {
     await Recipe.create({
@@ -40,6 +42,7 @@ export const addRecipe = async ({
       times,
       ingredients,
       steps,
+      id,
     });
     return true;
   } catch (e) {
