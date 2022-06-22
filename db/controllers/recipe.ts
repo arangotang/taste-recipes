@@ -23,6 +23,18 @@ export const getAllRecipes = async (): Promise<RecipeProps[] | false> => {
   }
 };
 
+export const getOneRecipe = async (
+  id: string
+): Promise<any | RecipeProps | false> => {
+  try {
+    const oneRecipe = await Recipe.find({ id });
+    return oneRecipe;
+  } catch (e) {
+    console.error(e);
+    return false;
+  }
+};
+
 export const addRecipe = async ({
   title,
   cuisine,

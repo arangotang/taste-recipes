@@ -3,7 +3,11 @@ const db = require('../db');
 import morgan from 'morgan';
 import cors from 'cors';
 import express from 'express';
-import { addRecipe, getAllRecipes } from '../db/controllers/recipe';
+import {
+  addRecipe,
+  getAllRecipes,
+  getOneRecipe,
+} from '../db/controllers/recipe';
 
 const PORT = process.env.PORT || 3001;
 
@@ -28,6 +32,15 @@ app.post('/recipes', async (req, res) => {
     res.sendStatus(400);
   } else {
     res.sendStatus(201);
+  }
+});
+
+app.get('/recipes/:recipeId', async (req, res) => {
+  const postRes = await getOneRecipe(req.params.recipeId);
+  if (postRes === false) {
+    res.sendStatus(400);
+  } else {
+    res.send(postRes).status(200);
   }
 });
 
